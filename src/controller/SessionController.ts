@@ -1,9 +1,9 @@
 import config from "config";
 import { Request,Response } from "express";
 import { validatePassword } from "../service/UserService";
-import { createSession,findSession } from "../service/SessionService";
+import { createSession,findSession, updateSession } from "../service/SessionService";
 import { signJwt } from "../utils/jwt";
-import log from "../utils/logger";
+import logger from "../utils/logger";
 
 export async function createUserSessionHandler(req:Request,res:Response){
     
@@ -28,7 +28,7 @@ export async function createUserSessionHandler(req:Request,res:Response){
     // step 3 : create access token
     const accessToken = signJwt({...user,session},"15m");  // 15min
 
-    log.info(accessToken);
+    logger.info(accessToken);
 
     // step 4 : create refresh token
     const refreshToken = signJwt({...user,session},"1y");  // 1year
@@ -49,4 +49,19 @@ export async function getAllUserSessionHandler(req:Request,res:Response){
 
     return res.send(sessions);
     
+}
+
+export async function deleteUserSessionHandler(req:Request,res:Response){
+    const sessionId = res.locals.user.session;
+
+    const email = res.locals.user.email;
+
+
+    const session = await updateSession(email);
+
+    return res.send(
+        {
+            acessToken:null,
+            refreshToken:null
+        });
 }

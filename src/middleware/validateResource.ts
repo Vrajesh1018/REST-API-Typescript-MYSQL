@@ -1,6 +1,6 @@
 import { Request,Response,NextFunction } from "express"
 import { AnyZodObject } from "zod";
-import log from "../utils/logger";
+import logger from "../utils/logger";
 
 // this technique is called currying !! 
 const validateResource = (schema:any) => (req:Request,res:Response,next:NextFunction) =>{
@@ -18,7 +18,7 @@ const validateResource = (schema:any) => (req:Request,res:Response,next:NextFunc
 
     catch(e:any)
     {
-        log.error(e.message); 
+        logger.error(e.message); 
         return res.status(400).send(e.err);
     }
 }

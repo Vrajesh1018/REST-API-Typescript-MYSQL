@@ -7,10 +7,10 @@ const deseializeUser = (req:Request,res:Response,next:NextFunction)=>{
     const accessToken = get(req,"headers.authorization","").replace(/^Bearer\s/,"");
     const refreshToken = get(req,"headers.x-refresh");
 
-    console.log("Hii I am from deseralize user ...");
+    // console.log("Hii I am from deseralize user ...");
 
-    console.log(accessToken);
-    console.log(refreshToken);
+    // console.log(accessToken);
+    // console.log(refreshToken);
 
     if(!accessToken){
         return next();
@@ -30,6 +30,7 @@ const deseializeUser = (req:Request,res:Response,next:NextFunction)=>{
         return next();
     }
 
+    return next();
 
 }
 

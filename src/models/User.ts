@@ -1,7 +1,5 @@
 import mysql from "mysql2/promise";
 import bcrypt from "bcrypt";
-// import connect from "../utils/connect";
-import log from "../utils/logger";
 import { ResultSetHeader } from "mysql2";
 
 export interface UserInput {

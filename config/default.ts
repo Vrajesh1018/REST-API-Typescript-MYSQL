@@ -4,7 +4,7 @@ export default{
 
     // for SQL
     dbUser: "root",
-    dbPassword: "XXXXXXXX",
+    dbPassword: "xxxxxx",
     dbName: "typescript_rest_api",
     dbHost: "localhost",
 

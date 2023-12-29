@@ -3,7 +3,7 @@ import { omit } from "lodash";
 import { UserInput, UserRow } from "../models/User";
 import UserModel from "../models/User";
 import connect from "../utils/connect";
-import log from "../utils/logger";
+import logger from "../utils/logger";
 
 export async function createUser(input: UserInput) {
     try {
@@ -12,7 +12,7 @@ export async function createUser(input: UserInput) {
 
         const newUser = new UserModel(connection);
 
-        log.info(input);
+        logger.info(input);
 
         // log.info(newUser);
 
@@ -25,7 +25,7 @@ export async function createUser(input: UserInput) {
 
 export async function validatePassword({ email , password }: { email: string, password: string }) : Promise<any> {
 
-    log.info(email);
+    logger.info(email);
     
     const connection = await connect();
 

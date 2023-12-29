@@ -61,4 +61,13 @@ export default class SessionModel {
         
     }
 
+    async update(user: string): Promise<SessionRow | null> {
+
+
+        // set valid to false for session
+        const [result] = await this.connection.execute("update sessions set valid = false where user = ?",[user]);   // here execute returns two things [result,fields] in results it's contains array of all the entries in JSON format and in fields it's contains metadata for table 
+       
+        return null;
+    }
+    
 }

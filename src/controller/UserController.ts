@@ -4,7 +4,6 @@ import { createUser, getAllUsers, getUser, updateUser,deleteUser } from "../serv
 import { CreateUserInput } from "../schema/UserSchema";
 import { omit } from "lodash";
 import { UserInput, UserRow } from "../models/User";
-import log from "../utils/logger";
 
 //request<{paramas}, {responseBody},{schema}>
 
@@ -34,7 +33,7 @@ export async function updateUserHandler(req:Request,res:Response){
 
         return res.send(omit(updatedUser,"password"));
     } catch (error) {
-        log.error(error);
+        logger.error(error);
 
         return res.status(409).send(error);
     }
@@ -58,7 +57,7 @@ export async function deleteUserHandler(req:Request,res:Response){
 
     }
     catch(error){
-        log.error(error);
+        logger.error(error);
 
         return res.status(500).send(error);
     }
@@ -79,7 +78,7 @@ export async function getUserHandler(req:Request,res:Response){
         return res.status(200).send(omit(user,"password"));
 
     } catch (error) {
-        log.error(error);
+        logger.error(error);
 
         return res.status(500).send(error);
     }
@@ -93,7 +92,7 @@ export async function getAllUsersHandler(req:Request,res:Response){
         return res.status(200).send(users.map(user=>omit(user,"password")));
 
     } catch (error) {
-        log.error(error);
+        logger.error(error);
         return res.status(500).send(error);
     }
 }
